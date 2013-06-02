@@ -6,7 +6,7 @@ define apt::repository {
 	}
 	
 	package { 'python-software-properties':
-		ensure => present,
+		ensure  => present,
 		require => Exec['apt-get-update-for-python']
 	}
 	

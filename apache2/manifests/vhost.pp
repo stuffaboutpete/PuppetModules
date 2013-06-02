@@ -8,7 +8,7 @@ define apache2::vhost ($docroot) {
 		require => Package['apache2']
 	}
 	
-	file { "${docroot}/index.html":
+	file { "${docroot}/index.php":
 		ensure => present,
 		before => File["/etc/apache2/sites-available/${name}"]
 	}

@@ -10,7 +10,7 @@ define apt::repository {
 		require => Exec['apt-get-update-for-python']
 	}
 	
-	exec { "add-apt-repository ${name}":
+	exec { "add-apt-repository ${name} -y":
 		path    => '/usr/bin',
 		require => Package['python-software-properties']
 	}

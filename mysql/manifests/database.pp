@@ -3,7 +3,7 @@ define mysql::database (
 	$data   = undef
 ) {
 	
-	exec { 'create-database':
+	exec { "create-database ${name}":
 		unless  => "mysql -u root -p${mysql::root_password} ${name}",
 		command => "mysql -u root -p${mysql::root_password} -e 'CREATE DATABASE ${name}'",
 		require => Class['mysql'],
@@ -15,7 +15,7 @@ define mysql::database (
 		exec { 'apply-schema':
 			onlyif  => "mysql -u root -p${mysql::root_password} ${name}",
 			command => "mysql -u root -p${mysql::root_password} ${name} < ${schema}",
-			require => Exec['create-database'],
+			require => Exec["create-database ${name}"],
 			path    => '/usr/bin'
 		}
 		

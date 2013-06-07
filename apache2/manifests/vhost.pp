@@ -1,4 +1,4 @@
-define apache2::vhost ($docroot) {
+define apache2::vhost ($docroot, $environment = 'production') {
 	
 	include apache2
 	

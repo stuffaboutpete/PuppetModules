@@ -1,6 +1,7 @@
 class php ($version = '5.4', $show_errors = false) {
 	
 	include apache2
+	include apt::update
 	
 	package { 'php5':
 		ensure  => present,

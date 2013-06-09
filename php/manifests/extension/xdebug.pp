@@ -1,10 +1,12 @@
 class php::extension::xdebug {
 	
 	include apache2
+	include apt::update
 	
 	package { 'php5-xdebug':
-		ensure => present,
-		notify => Service['apache2']
+		ensure  => present,
+		notify  => Service['apache2'],
+		require => Class['apt::update']
 	}
 	
 	file { 'xdebug.ini':

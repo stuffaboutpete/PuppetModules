@@ -42,9 +42,10 @@ class php ($version = '5.4', $show_errors = false) {
 		
 		exec { 'reinstall php5.4':
 			command => 'apt-get install php5 -y --force-yes',
-			path    => '/usr/bin',
+			path    => ['/usr/bin', '/bin', '/sbin'],
 			require => Exec['reupdate apt'],
-			before  => File['php.ini']
+			before  => File['php.ini'],
+			returns => [0, 100]
 		}
 		
 	}

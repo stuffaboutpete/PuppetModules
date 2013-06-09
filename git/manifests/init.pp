@@ -1,7 +1,10 @@
 class git {
 	
+	include apt::update
+	
 	package { 'git':
-		ensure => present
+		ensure  => present,
+		require => Class['apt::update']
 	}
 	
 	exec { 'pretty-logger':

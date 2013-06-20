@@ -6,8 +6,7 @@ class php::extension::xdebug {
 	package { 'php5-xdebug':
 		ensure  => present,
 		notify  => Service['apache2'],
-		require => Class['apt::update'],
-		before  => Exec['reinstall php5.4']
+		require => Class['apt::update']
 	}
 	
 	file { 'xdebug.ini':

@@ -10,9 +10,14 @@ class apache2 {
 		require => Package['apache2']
 	}
 	
-	exec { '/usr/sbin/a2dissite default':
+	exec { '/usr/sbin/a2dissite 000-default':
 		require => Package['apache2'],
 		notify  => Service['apache2']
+	}
+	
+	file { '/var/www/index.html':
+		ensure  => absent,
+		require => Package['apache2']
 	}
 	
 }

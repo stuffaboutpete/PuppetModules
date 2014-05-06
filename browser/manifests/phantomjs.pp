@@ -1,8 +1,8 @@
-class php::extension::pear {
+class browser::phantomjs {
 	
 	include apt::update
 	
-	package { 'php-pear':
+	package { 'phantomjs':
 		ensure  => present,
 		require => Class['apt::update']
 	}

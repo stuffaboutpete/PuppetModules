@@ -1,6 +1,7 @@
 class mysql ($root_password = undef) {
 	
 	include apache2
+	include php
 	include apt::update
 	
 	package { 'mysql-server':
@@ -16,7 +17,7 @@ class mysql ($root_password = undef) {
 	
 	package { 'php5-mysql':
 		ensure  => present,
-		require => Package['mysql-server']
+		require => [Package['mysql-server'], Class['php']]
 	}
 	
 	service { 'mysql':

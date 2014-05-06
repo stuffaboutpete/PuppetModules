@@ -1,4 +1,4 @@
-class php ($version = '5.4', $show_errors = false) {
+class php ($show_errors = false) {
 	
 	include apache2
 	include apt::update
@@ -26,28 +26,6 @@ class php ($version = '5.4', $show_errors = false) {
 		source  => "puppet:///modules/php/${ini_file}.ini",
 		notify  => Service['apache2'],
 		require => Package['libapache2-mod-php5']
-	}
-	
-	if $version == '5.4' {
-		
-		apt::repository { 'ppa:ondrej/php5':
-			require => Package['php5']
-		}
-		
-		exec { 'reupdate apt':
-			command => 'apt-get update',
-			path    => '/usr/bin',
-			require => Apt::Repository['ppa:ondrej/php5']
-		}
-		
-		exec { 'reinstall php5.4':
-			command => 'apt-get install php5 -y --force-yes',
-			path    => ['/usr/bin', '/bin', '/sbin'],
-			require => Exec['reupdate apt'],
-			before  => File['php.ini'],
-			returns => [0, 100]
-		}
-		
 	}
 	
 }

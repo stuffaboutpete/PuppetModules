@@ -21,8 +21,8 @@ define apache2::vhost ($docroot, $environment = 'production', $aliases = undef) 
 		notify  => Service['apache2']
 	}
 	
-	exec { "/bin/echo 'echo \"127.0.0.1	${name}\" >> /etc/hosts' | sudo -s":
-		unless => "/bin/grep -q \"127.0.0.1 ${name}\" /etc/hosts | wc -l"
+	exec { "/bin/echo 'echo \"127.0.0.1 ${name}\" >> /etc/hosts' | sudo -s":
+		unless => "/bin/grep -q \"127.0.0.1 ${name}\" /etc/hosts"
 	}
 	
 	if $aliases {
